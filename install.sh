@@ -26,6 +26,7 @@ PACMAN_PKGS=(
   nautilus
   btop
   zsh
+  wlr-randr
 )
 
 # AUR packages
@@ -37,6 +38,7 @@ AUR_PKGS=(
   lazygit
   lazydocker
   pass
+  wlr-randr-gtk
 )
 
 # Install yay (AUR helper) if missing

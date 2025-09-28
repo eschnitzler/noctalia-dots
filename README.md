@@ -20,16 +20,6 @@ Run the install script:
 bash install.sh
 ```
 
-### Backup your dotfiles
-```bash
-~/.config/scripts/backup_dotfiles.sh
-```
-
-### Update all packages and dotfiles
-```bash
-~/.config/scripts/update_all.sh
-```
-
 ## References
 - [Noctalia Documentation](https://docs.noctalia.dev/docs/)
 - [Noctalia Shell GitHub](https://github.com/noctalia-dev/noctalia-shell)

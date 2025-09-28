@@ -25,7 +25,12 @@ for line in "${binds[@]}"; do
   fi
 done
 
+
 # Show menu and get selection
+if ! command -v rofi &>/dev/null; then
+  echo "rofi is required. Install it with: sudo pacman -S rofi"
+  exit 1
+fi
 selected=$(printf '%s\n' "${menu_entries[@]}" | rofi -dmenu -i -p "Run Hyprland Keybind" -no-custom)
 
 # Find index of selection

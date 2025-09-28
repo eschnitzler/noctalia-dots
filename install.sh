@@ -1,6 +1,7 @@
 
 #!/usr/bin/env bash
 set -e
+trap 'echo "Error occurred during installation. Please check the output above."' ERR
 
 # Install yay (AUR helper) if missing
 if ! command -v yay &>/dev/null; then
@@ -34,6 +35,8 @@ PACMAN_PKGS=(
   ncdu
   fd
   ripgrep
+  neofetch
+  git-delta
 )
 
 # AUR packages
@@ -51,6 +54,10 @@ AUR_PKGS=(
   exa
   bat
   xplr
+  ranger
+  lf
+  fzf-tab
+  starship-preset
 )
 
 # Install yay (AUR helper) if missing
@@ -119,6 +126,7 @@ fi
 if [ -d "/usr/share/sddm/themes/catppuccin" ]; then
   sudo sed -i 's/^Current=.*/Current=catppuccin/' /etc/sddm.conf
 fi
+
 
 
 # Print summary and error handling

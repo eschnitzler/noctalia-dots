@@ -39,6 +39,7 @@ AUR_PKGS=(
   lazydocker
   pass
   wlr-randr-gtk
+  google-chrome
 )
 
 # Install yay (AUR helper) if missing

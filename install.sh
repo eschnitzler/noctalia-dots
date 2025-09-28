@@ -121,16 +121,6 @@ if [ -d "/usr/share/sddm/themes/catppuccin" ]; then
 fi
 
 
-# Backup dotfiles to GitHub (optional, run manually)
-cat > "$HOME/.config/scripts/backup_dotfiles.sh" <<EOF
-#!/usr/bin/env bash
-cd ~/noctalia-dots
-git add .
-git commit -m "Backup dotfiles: \\$(date)"
-git push
-EOF
-chmod +x "$HOME/.config/scripts/backup_dotfiles.sh"
-
 # Print summary and error handling
 echo "\nNoctalia + Hyprland desktop setup complete!\n"
 echo "- Noctalia will start automatically with your session via systemd."
@@ -138,5 +128,4 @@ echo "- Nautilus is set as your default file manager."
 echo "- Zsh is your default shell, configured with Starship and Oh My Zsh."
 echo "- Catppuccin is your SDDM theme."
 echo "- Extra CLI tools and utilities installed: bat, exa, fd, ripgrep, ncdu, tldr, imv, zathura, xplr, wl-clipboard."
-echo "- To backup your dotfiles, run ~/.config/scripts/backup_dotfiles.sh"
 echo "\nLog out and log back in to enjoy your new environment."

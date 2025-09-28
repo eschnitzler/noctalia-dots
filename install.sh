@@ -37,6 +37,7 @@ PACMAN_PKGS=(
   ripgrep
   neofetch
   git-delta
+  ddcutil
 )
 
 # AUR packages

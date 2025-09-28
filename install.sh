@@ -24,6 +24,8 @@ PACMAN_PKGS=(
   cava
   wlsunset
   nautilus
+  btop
+  zsh
 )
 
 # AUR packages
@@ -31,6 +33,10 @@ AUR_PKGS=(
   noctalia-shell
   cliphist
   matugen
+  nvim
+  lazygit
+  lazydocker
+  pass
 )
 
 # Install yay (AUR helper) if missing
@@ -81,5 +87,17 @@ systemctl --user enable --now noctalia.service
 # Set Nautilus as the default file manager
 xdg-mime default org.gnome.Nautilus.desktop inode/directory
 
+
+# Set Nautilus as the default file manager
+xdg-mime default org.gnome.Nautilus.desktop inode/directory
+
+# Set zsh as the default shell for the current user
+chsh -s /bin/zsh "$USER"
+
+# Configure zsh to use starship prompt
+if ! grep -q 'eval "$(starship init zsh)"' "$HOME/.zshrc"; then
+  echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
+fi
+
 # Print success message
-echo "\nNoctalia + Hyprland desktop setup complete! Noctalia will now start automatically with your session via systemd. Nautilus is now set as your default file manager. Log out and log back in to enjoy your new environment."
+echo "\nNoctalia + Hyprland desktop setup complete! Noctalia will now start automatically with your session via systemd. Nautilus is now set as your default file manager. Zsh is now your default shell and is configured to use the Starship prompt. Log out and log back in to enjoy your new environment."

@@ -27,6 +27,13 @@ PACMAN_PKGS=(
   btop
   zsh
   wlr-randr
+  wl-clipboard
+  imv
+  zathura
+  tldr
+  ncdu
+  fd
+  ripgrep
 )
 
 # AUR packages
@@ -41,6 +48,9 @@ AUR_PKGS=(
   wlr-randr-gtk
   google-chrome
   sddm-catppuccin-theme
+  exa
+  bat
+  xplr
 )
 
 # Install yay (AUR helper) if missing
@@ -92,15 +102,16 @@ systemctl --user enable --now noctalia.service
 xdg-mime default org.gnome.Nautilus.desktop inode/directory
 
 
-# Set Nautilus as the default file manager
-xdg-mime default org.gnome.Nautilus.desktop inode/directory
-
 # Set zsh as the default shell for the current user
 chsh -s /bin/zsh "$USER"
 
-# Configure zsh to use starship prompt
+
+# Configure zsh to use starship prompt and oh-my-zsh if not present
 if ! grep -q 'eval "$(starship init zsh)"' "$HOME/.zshrc"; then
   echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
+fi
+if ! [ -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
 fi
 
 
@@ -109,5 +120,23 @@ if [ -d "/usr/share/sddm/themes/catppuccin" ]; then
   sudo sed -i 's/^Current=.*/Current=catppuccin/' /etc/sddm.conf
 fi
 
-# Print success message
-echo "\nNoctalia + Hyprland desktop setup complete! Noctalia will now start automatically with your session via systemd. Nautilus is now set as your default file manager. Zsh is now your default shell and is configured to use the Starship prompt. Catppuccin is now your SDDM theme. Log out and log back in to enjoy your new environment."
+
+# Backup dotfiles to GitHub (optional, run manually)
+cat > "$HOME/.config/scripts/backup_dotfiles.sh" <<EOF
+#!/usr/bin/env bash
+cd ~/noctalia-dots
+git add .
+git commit -m "Backup dotfiles: \\$(date)"
+git push
+EOF
+chmod +x "$HOME/.config/scripts/backup_dotfiles.sh"
+
+# Print summary and error handling
+echo "\nNoctalia + Hyprland desktop setup complete!\n"
+echo "- Noctalia will start automatically with your session via systemd."
+echo "- Nautilus is set as your default file manager."
+echo "- Zsh is your default shell, configured with Starship and Oh My Zsh."
+echo "- Catppuccin is your SDDM theme."
+echo "- Extra CLI tools and utilities installed: bat, exa, fd, ripgrep, ncdu, tldr, imv, zathura, xplr, wl-clipboard."
+echo "- To backup your dotfiles, run ~/.config/scripts/backup_dotfiles.sh"
+echo "\nLog out and log back in to enjoy your new environment."

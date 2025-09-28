@@ -1,0 +1,12 @@
+# Starship prompt config for a clean, modern look
+format = "$directory$git_branch$git_status$nodejs$rust$python$cmd_duration$line_break$jobs$character"
+
+[directory]
+style = "bold blue"
+
+[git_branch]
+style = "bold purple"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"

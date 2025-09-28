@@ -40,6 +40,7 @@ AUR_PKGS=(
   pass
   wlr-randr-gtk
   google-chrome
+  sddm-catppuccin-theme
 )
 
 # Install yay (AUR helper) if missing
@@ -102,5 +103,11 @@ if ! grep -q 'eval "$(starship init zsh)"' "$HOME/.zshrc"; then
   echo 'eval "$(starship init zsh)"' >> "$HOME/.zshrc"
 fi
 
+
+# Set Catppuccin theme for SDDM if installed
+if [ -d "/usr/share/sddm/themes/catppuccin" ]; then
+  sudo sed -i 's/^Current=.*/Current=catppuccin/' /etc/sddm.conf
+fi
+
 # Print success message
-echo "\nNoctalia + Hyprland desktop setup complete! Noctalia will now start automatically with your session via systemd. Nautilus is now set as your default file manager. Zsh is now your default shell and is configured to use the Starship prompt. Log out and log back in to enjoy your new environment."
+echo "\nNoctalia + Hyprland desktop setup complete! Noctalia will now start automatically with your session via systemd. Nautilus is now set as your default file manager. Zsh is now your default shell and is configured to use the Starship prompt. Catppuccin is now your SDDM theme. Log out and log back in to enjoy your new environment."
